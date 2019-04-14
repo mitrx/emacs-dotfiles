@@ -160,23 +160,7 @@ tangled, and the tangled file is compiled."
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(custom-set-faces
- '(default
-   ((t
-     (:inherit nil
-      :stipple nil
-      :background "#3F3F3F"
-      :foreground "#DCDCCC"
-      :inverse-video nil
-      :box nil
-      :strike-through nil
-      :overline nil
-      :underline nil
-      :slant normal
-      :weight normal
-      :height 98
-      :width normal
-      :family "Fira Code")))))
+(set-face-attribute 'default nil :font "Fira Code")
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
