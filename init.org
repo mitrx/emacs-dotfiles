@@ -19,7 +19,6 @@
 (byte-compile-file (concat user-emacs-directory "init.el"))
 #+END_SRC
 
-
 #+BEGIN_SRC emacs-lisp
 ;;; -*- lexical-binding: t -*-
 #+END_SRC
@@ -36,15 +35,6 @@ tangled, and the tangled file is compiled."
       (byte-compile-file (concat user-emacs-directory "init.el")))))
 
 (add-hook 'after-save-hook 'tangle-init)
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp
-(add-hook
- 'after-init-hook
- (lambda ()
-   (let ((private-file (concat user-emacs-directory "private.el")))
-     (when (file-exists-p private-file)
-       (load-file private-file)))))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
@@ -144,7 +134,6 @@ tangled, and the tangled file is compiled."
          '(projectile-global-mode
 	   global-company-mode
 	   column-number-mode
-	   ; global-rainbow-delimiters-mode
 	   beacon-mode
 	   yas-global-mode
 	   show-paren-mode
