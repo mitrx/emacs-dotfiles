@@ -156,7 +156,8 @@ tangled, and the tangled file is compiled."
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(load-theme 'zenburn t)
+(add-to-list 'custom-theme-load-path (expand-file-name "~/.emacs.d/themes/"))
+(load-theme 'nord t)
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
