@@ -66,6 +66,7 @@ tangled, and the tangled file is compiled."
 	    magit                ; control Git from Emacs
 	    rainbow-delimiters
 	    nord-theme
+	    git-timemachine      ; Walk through git revisions of a file
 	    paredit              ; minor mode for editing parentheses
 	    projectile           ; Manage and navigate projects in Emacs easily
 	    yaml-mode
