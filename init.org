@@ -103,7 +103,6 @@ tangled, and the tangled file is compiled."
 	   global-company-mode
 	   column-number-mode
 	   beacon-mode
-	   yas-global-mode
 	   show-paren-mode
 	   ivy-mode
 	   counsel-mode
