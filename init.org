@@ -55,7 +55,6 @@ tangled, and the tangled file is compiled."
 	 (packages
 	  '(auto-compile         ; automatically compile Emacs Lisp libraries
 	    org                  ; Outline-based notes management and organizer
-	    beacon               ; Highlight the cursor whenever the window scrolls
 	    cider                ; Clojure Interactive Development Environment
 	    company              ; Modular text completion framework
 	    ivy                  ; Incremental Vertical completYon
@@ -101,7 +100,6 @@ tangled, and the tangled file is compiled."
          '(projectile-global-mode
 	   global-company-mode
 	   column-number-mode
-	   beacon-mode
 	   show-paren-mode
 	   ivy-mode
 	   counsel-mode
