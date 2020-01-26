@@ -57,7 +57,6 @@ tangled, and the tangled file is compiled."
 	    org                  ; Outline-based notes management and organizer
 	    beacon               ; Highlight the cursor whenever the window scrolls
 	    cider                ; Clojure Interactive Development Environment
-	    clj-refactor         ; A collection of clojure refactoring functions
 	    company              ; Modular text completion framework
 	    ivy                  ; Incremental Vertical completYon
 	    swiper               ; Isearch with an overview
