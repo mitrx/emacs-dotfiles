@@ -199,3 +199,8 @@ tangled, and the tangled file is compiled."
 #+BEGIN_SRC emacs-lisp
 (pinentry-start)
 #+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "M-p") 'scroll-down-line)
+(global-set-key (kbd "M-n") 'scroll-up-line)
+#+END_SRC
