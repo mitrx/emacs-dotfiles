@@ -70,7 +70,7 @@ tangled, and the tangled file is compiled."
 	    yaml-mode            ; Major mode for editing YAML files
 	    which-key            ; Display available keybindings in popup
 	    kubel                ; Controlling Kubernetes with limited permissions
-	    pinentry)))
+	    )))
     (ignore-errors
       (let ((packages (cl-remove-if 'package-installed-p packages)))
 	(when packages
@@ -195,10 +195,6 @@ tangled, and the tangled file is compiled."
   (rfn 2)
   (let-routes 1)
   (context 2))
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp
-(pinentry-start)
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
