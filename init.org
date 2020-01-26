@@ -69,6 +69,7 @@ tangled, and the tangled file is compiled."
 	    projectile           ; Manage and navigate projects in Emacs easily
 	    yaml-mode            ; Major mode for editing YAML files
 	    which-key            ; Display available keybindings in popup
+	    kubel                ; Controlling Kubernetes with limited permissions
 	    pinentry)))
     (ignore-errors
       (let ((packages (cl-remove-if 'package-installed-p packages)))
