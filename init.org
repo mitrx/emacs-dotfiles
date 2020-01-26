@@ -68,7 +68,8 @@ tangled, and the tangled file is compiled."
 	    paredit              ; minor mode for editing parentheses
 	    projectile           ; Manage and navigate projects in Emacs easily
 	    yaml-mode            ; Major mode for editing YAML files
-	    which-key)))         ; Display available keybindings in popup
+	    which-key            ; Display available keybindings in popup
+	    pinentry)))
     (ignore-errors
       (let ((packages (cl-remove-if 'package-installed-p packages)))
 	(when packages
@@ -193,4 +194,8 @@ tangled, and the tangled file is compiled."
   (rfn 2)
   (let-routes 1)
   (context 2))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(pinentry-start)
 #+END_SRC
