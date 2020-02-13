@@ -7,16 +7,16 @@
 #+PROPERTY: header-args :tangle yes
 
 #+BEGIN_SRC emacs-lisp :tangle no
-;; We can't tangle without org!
-(require 'org)
-;; Open the configuration
-(find-file (concat user-emacs-directory "init.org"))
-;; tangle it
-(org-babel-tangle)
-;; load it
-(load-file (concat user-emacs-directory "init.el"))
-;; finally byte-compile it
-(byte-compile-file (concat user-emacs-directory "init.el"))
+  ;; We can't tangle without org!
+  (require 'org)
+  ;; Open the configuration
+  (find-file (concat user-emacs-directory "init.org"))
+  ;; tangle it
+  (org-babel-tangle)
+  ;; load it
+  (load-file (concat user-emacs-directory "init.el"))
+  ;; finally byte-compile it
+  (byte-compile-file (concat user-emacs-directory "init.el"))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
@@ -24,30 +24,32 @@
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(defun tangle-init ()
-  "If the current buffer is 'init.org' the code-blocks are
-tangled, and the tangled file is compiled."
-  (when (equal (buffer-file-name)
-               (expand-file-name (concat user-emacs-directory "init.org")))
-    ;; Avoid running hooks when tangling.
-    (let ((prog-mode-hook nil))
-      (org-babel-tangle)
-      (byte-compile-file (concat user-emacs-directory "init.el")))))
+  (defun tangle-init ()
+    "If the current buffer is 'init.org' the code-blocks are
+  tangled, and the tangled file is compiled."
+    (when (equal (buffer-file-name)
+		 (expand-file-name (concat user-emacs-directory "init.org")))
+      ;; Avoid running hooks when tangling.
+      (let ((prog-mode-hook nil))
+	(org-babel-tangle)
+	(byte-compile-file (concat user-emacs-directory "init.el")))))
 
-(add-hook 'after-save-hook 'tangle-init)
+  (add-hook 'after-save-hook 'tangle-init)
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(require 'cl-lib)
-(require 'package)
-(package-initialize)
+  (require 'cl-lib)
+  (require 'package)
+  (package-initialize)
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/"))
+  (add-to-list 'package-archives
+	       '("melpa" . "https://melpa.org/packages/"))
+  (add-to-list 'package-archives
+	       '("melpa-stable" . "https://stable.melpa.org/packages/"))
 
-(add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
+  (add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
@@ -80,124 +82,141 @@ tangled, and the tangled file is compiled."
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(set-language-environment "UTF-8")
+  (set-language-environment "UTF-8")
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(dolist (mode
-         '(menu-bar-mode
-           tool-bar-mode
-           scroll-bar-mode
-           blink-cursor-mode))
-  (funcall mode 0))
+  (dolist (mode
+	   '(menu-bar-mode
+	     tool-bar-mode
+	     scroll-bar-mode
+	     blink-cursor-mode))
+    (funcall mode 0))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(setq whitespace-line-column 80) ;; limit line length
-(setq whitespace-style '(face lines-tail))
+  (setq whitespace-line-column 80) ;; limit line length
+  (setq whitespace-style '(face lines-tail))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(dolist (mode
-         '(projectile-global-mode
-	   global-company-mode
-	   column-number-mode
-	   show-paren-mode
-	   ivy-mode
-	   counsel-mode
-	   which-key-mode
-	   global-whitespace-mode))
-  (funcall mode 1))
+  (dolist (mode
+	   '(projectile-global-mode
+	     global-company-mode
+	     column-number-mode
+	     show-paren-mode
+	     ivy-mode
+	     counsel-mode
+	     which-key-mode
+	     global-whitespace-mode))
+    (funcall mode 1))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(add-to-list 'custom-theme-load-path (expand-file-name "~/.emacs.d/themes/"))
-(load-theme 'nord t)
+  (add-to-list 'custom-theme-load-path (expand-file-name "~/.emacs.d/themes/"))
+  (load-theme 'tsdh-light t)
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(set-face-attribute 'default nil :font "Fira Code")
+  (set-face-attribute 'default nil :font "Fira Code")
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(add-hook 'cider-repl-mode-hook (lambda () (local-set-key (kbd "C-l") 'cider-repl-clear-buffer)))
+  (add-hook 'cider-repl-mode-hook (lambda () (local-set-key (kbd "C-l") 'cider-repl-clear-buffer)))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(dolist (mode '(cider-repl-mode
-                clojure-mode
-                lisp-mode
-                emacs-lisp-mode
-                lisp-interaction-mode
-		rainbow-delimiters-mode))
-  ;; add paredit-mode to all mode-hooks
-  (add-hook (intern (concat (symbol-name mode) "-hook")) 'paredit-mode))
+  (dolist (mode '(cider-repl-mode
+		  clojure-mode
+		  lisp-mode
+		  emacs-lisp-mode
+		  lisp-interaction-mode
+		  rainbow-delimiters-mode))
+    ;; add paredit-mode to all mode-hooks
+    (add-hook (intern (concat (symbol-name mode) "-hook")) 'paredit-mode))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
+  (add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-;") 'avy-goto-char)
+  (global-set-key (kbd "C-;") 'avy-goto-char)
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(setq projectile-completion-system 'ivy)
-(setq projectile-create-missing-test-files t)
-(global-set-key (kbd "C-s") 'swiper)
-(global-set-key (kbd "C-c g") 'counsel-rg)
+  (setq projectile-completion-system 'ivy)
+  (setq projectile-create-missing-test-files t)
+  (global-set-key (kbd "C-s") 'swiper)
+  (global-set-key (kbd "C-c g") 'counsel-rg)
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+  (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(setq ivy-initial-inputs-alist nil)
+  (setq ivy-initial-inputs-alist nil)
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
-  backup-by-copying t    ; Don't delink hardlinks
-  version-control t      ; Use version numbers on backups
-  delete-old-versions t  ; Automatically delete excess backups
-  kept-new-versions 20   ; how many of the newest versions to keep
-  kept-old-versions 5    ; and how many of the old
-  )
+  (setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
+	backup-by-copying t    ; Don't delink hardlinks
+	version-control t      ; Use version numbers on backups
+	delete-old-versions t  ; Automatically delete excess backups
+	kept-new-versions 20   ; how many of the newest versions to keep
+	kept-old-versions 5    ; and how many of the old
+	)
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+  (add-hook 'before-save-hook 'delete-trailing-whitespace)
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-x g") 'magit-status)
+  (global-set-key (kbd "C-x g") 'magit-status)
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(require 'clojure-mode)
+  (require 'clojure-mode)
 
-(define-clojure-indent
-  (defroutes 'defun)
-  (GET 2)
-  (POST 2)
-  (PUT 2)
-  (DELETE 2)
-  (HEAD 2)
-  (ANY 2)
-  (OPTIONS 2)
-  (PATCH 2)
-  (rfn 2)
-  (let-routes 1)
-  (context 2))
+  (define-clojure-indent
+    (defroutes 'defun)
+    (GET 2)
+    (POST 2)
+    (PUT 2)
+    (DELETE 2)
+    (HEAD 2)
+    (ANY 2)
+    (OPTIONS 2)
+    (PATCH 2)
+    (rfn 2)
+    (let-routes 1)
+    (context 2))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-p") 'scroll-down-line)
-(global-set-key (kbd "M-n") 'scroll-up-line)
+  (global-set-key (kbd "M-p") 'scroll-down-line)
+  (global-set-key (kbd "M-n") 'scroll-up-line)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-confirm-babel-evaluate nil)
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((shell      . t)
+     (emacs-lisp . t)
+     (calc       . t)
+     (clojure    . t)
+     ;; (python     . t)
+     ;; (restclient . t)
+     ;; (dot        . t)
+     ;; (ditaa      . t)
+     ;; (css        . t)
+     ;; (plantuml   . t)
+     ))
 #+END_SRC
