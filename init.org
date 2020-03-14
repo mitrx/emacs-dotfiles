@@ -220,3 +220,10 @@
      ;; (plantuml   . t)
      ))
 #+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(setq org-edit-src-content-indentation 0
+    org-src-tab-acts-natively t
+    org-src-preserve-indentation t)
+(setq org-src-window-setup 'current-window)
+#+END_SRC
