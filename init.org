@@ -66,12 +66,12 @@
 	    magit                ; control Git from Emacs
 	    git-timemachine      ; Walk through git revisions of a file
 	    rainbow-delimiters   ; Highlight brackets according to their depth
-	    nord-theme           ; An arctic, north-bluish clean and elegant theme
 	    paredit              ; minor mode for editing parentheses
 	    projectile           ; Manage and navigate projects in Emacs easily
 	    yaml-mode            ; Major mode for editing YAML files
 	    which-key            ; Display available keybindings in popup
 	    kubel                ; Controlling Kubernetes with limited permissions
+	    modus-operandi-theme
 	    )))
     (ignore-errors
       (let ((packages (cl-remove-if 'package-installed-p packages)))
@@ -114,7 +114,7 @@
 
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'custom-theme-load-path (expand-file-name "~/.emacs.d/themes/"))
-  (load-theme 'tsdh-light t)
+  (load-theme 'modus-operandi t)
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
