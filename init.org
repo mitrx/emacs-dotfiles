@@ -58,6 +58,7 @@
 	  '(auto-compile         ; automatically compile Emacs Lisp libraries
 	    org                  ; Outline-based notes management and organizer
 	    cider                ; Clojure Interactive Development Environment
+	    clj-refactor         ; Refactoring functions for Clojure
 	    company              ; Modular text completion framework
 	    ivy                  ; Incremental Vertical completYon
 	    swiper               ; Isearch with an overview
