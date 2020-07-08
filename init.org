@@ -108,6 +108,7 @@
 	     global-company-mode
 	     column-number-mode
 	     show-paren-mode
+	     yas-global-mode
 	     ivy-mode
 	     counsel-mode
 	     which-key-mode
