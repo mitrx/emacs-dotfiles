@@ -72,7 +72,8 @@
 	    yaml-mode            ; Major mode for editing YAML files
 	    which-key            ; Display available keybindings in popup
 	    kubel                ; Controlling Kubernetes with limited permissions
-	    modus-operandi-theme
+	    modus-operandi-theme ; a theme with focus on readability
+	    modus-vivendi-theme
 	    )))
     (ignore-errors
       (let ((packages (cl-remove-if 'package-installed-p packages)))
