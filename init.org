@@ -74,6 +74,7 @@
 	    kubel                ; Controlling Kubernetes with limited permissions
 	    modus-operandi-theme ; a theme with focus on readability
 	    modus-vivendi-theme
+	    ace-window
 	    )))
     (ignore-errors
       (let ((packages (cl-remove-if 'package-installed-p packages)))
@@ -228,4 +229,8 @@
     org-src-tab-acts-natively t
     org-src-preserve-indentation t)
 (setq org-src-window-setup 'current-window)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "M-o") 'ace-window)
 #+END_SRC
