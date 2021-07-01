@@ -48,8 +48,7 @@
 	     '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'package-archives
 	     '("melpa-stable" . "https://stable.melpa.org/packages/"))
-
-(add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
+;; (add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
@@ -98,11 +97,6 @@
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(setq whitespace-line-column 80) ;; limit line length
-(setq whitespace-style '(face lines-tail))
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp
 (dolist (mode
 	 '(projectile-global-mode
 	   global-company-mode
@@ -112,7 +106,8 @@
 	   ivy-mode
 	   counsel-mode
 	   which-key-mode
-	   global-whitespace-mode))
+	   ; global-whitespace-mode
+	   ))
   (funcall mode 1))
 #+END_SRC
 
@@ -126,7 +121,8 @@
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(add-hook 'cider-repl-mode-hook (lambda () (local-set-key (kbd "C-l") 'cider-repl-clear-buffer)))
+(add-hook 'cider-repl-mode-hook
+	  (lambda () (local-set-key (kbd "C-l") 'cider-repl-clear-buffer)))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
@@ -142,6 +138,11 @@
 
 #+BEGIN_SRC emacs-lisp
 (add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
+(require 'whitespace) ; require whitespace to avoid free variable assignment warnings
+(add-hook 'clojure-mode-hook (lambda ()
+			       (setq whitespace-line-column 80)
+			       (setq whitespace-style '(face lines-tail))
+			       (whitespace-mode)))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
@@ -226,12 +227,41 @@
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(setq org-edit-src-content-indentation 0
-      org-src-tab-acts-natively t
-      org-src-preserve-indentation t)
+;; (setq org-edit-src-content-indentation 0
+;;       org-src-tab-acts-natively t
+;;       org-src-preserve-indentation t)
 (setq org-src-window-setup 'current-window)
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "M-o") 'ace-window)
 #+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(defun toggle-window-dedicated ()
+  "Control whether or not Emacs is allowed to display another
+buffer in current window."
+  (interactive)
+  (message
+   (if (set-window-dedicated-p
+	(get-buffer-window (current-buffer))
+	(not (window-dedicated-p (get-buffer-window (current-buffer)))))
+       "%s: Can't touch this!"
+     "%s is up for grabs.")
+   (current-buffer)))
+
+(global-set-key (kbd "C-c t") 'toggle-window-dedicated)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file)
+#+END_SRC
+
+#+begin_src emacs-lisp
+(setq-default bidi-paragraph-direction 'left-to-right)
+#+end_src
+
+#+begin_src emacs-lisp
+(setq css-indent-offset 2)
+#+end_src
